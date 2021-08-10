@@ -32,3 +32,14 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+## File-based project format:
+*.iws
+
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+
+# idea
+/.idea
+

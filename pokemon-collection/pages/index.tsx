@@ -1,5 +1,6 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import Head from 'next/head';
+import styles from '../styles/Home.module.css';
+import CardList from '../components/organisms/cardList/CardList';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Pokémon Collection</h1>
+        <CardList />
       </main>
 
       <footer className={styles.footer}></footer>
