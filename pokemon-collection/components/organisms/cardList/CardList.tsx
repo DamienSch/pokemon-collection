@@ -1,40 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import CardItem from '../../molecules/cardItem/CardItem';
 
-function CardList() {
-  const [basePokemonData, setBasePokemonData] = useState([]);
+type pokemon = {
+  name: string;
+  numero: string;
+};
 
-  const fetchPokemonData = (pokemon: any) => {
-    const pokemonDataUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemon.name}`;
+type pokemonCollection = {
+  basePokemonData: [pokemon];
+};
 
-    fetch(pokemonDataUrl)
-      .then((response) => {
-        return response.json();
-      })
-      .then((pokemon) => {
-        setBasePokemonData((basePokemonData): any => [
-          ...basePokemonData,
-          {
-            name: `${pokemon.names[4].name}`,
-            numero: `${pokemon.id}`,
-          },
-        ]);
-      });
-  };
-
-  useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-      .then((response) => {
-        return response.json();
-      })
-      .then((allPokemon) => {
-        allPokemon.results.forEach((pokemon: any) => {
-          fetchPokemonData(pokemon);
-        });
-      });
-  }, []);
-
+function CardList({ basePokemonData }: pokemonCollection) {
   return (
     <Grid
       container
@@ -46,10 +23,11 @@ function CardList() {
       {basePokemonData.map((pokemon: any, index: number) => (
         <Grid item xs={12} md={4} key={index}>
           <CardItem
-            cardImageAlt={'ok'}
-            cardImageSrc={'./01.png'}
-            cardTitle={pokemon?.name}
+            cardImageAlt={`image de carte ${pokemon?.name}`}
+            cardImageSrc={`./setDeBase/${pokemon?.numero}.webp`}
+            pokemonName={pokemon?.name}
             numberInPokedex={`${pokemon?.numero}/151`}
+            pokemonId={pokemon?.numero}
           />
         </Grid>
       ))}
